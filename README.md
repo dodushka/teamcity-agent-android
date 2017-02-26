@@ -12,9 +12,9 @@ Optionally you can specify your ownaddress using the `TEAMCITY_OWN_ADDRESS` vari
 Linking example
 --------
 ```
-docker run -d --name=teamcity-agent-1 --link teamcity:teamcity --privileged -e TEAMCITY_SERVER=http://teamcity:8111 sjoerdmulder/teamcity-agent:latest
+docker run -d --name=teamcity-agent-android-1 --link teamcity:teamcity --privileged -e TEAMCITY_SERVER=http://teamcity:8111 auras/teamcity-agent-android:latest
 ```
 
 ## What is inside
 
-- node 4.2.6, npm 3.5.0
+- Android Build tools, ndk-bundle, cmake 3.6.3155560, lldb 2.2, fastlane, ruby 2.3, oracle jdk8
