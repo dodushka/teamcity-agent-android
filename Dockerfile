@@ -64,11 +64,13 @@ RUN curl -o /usr/local/bin/jq -SL https://github.com/stedolan/jq/releases/downlo
 RUN apt-add-repository ppa:brightbox/ruby-ng \
 	&& apt-get update \
     && apt-get upgrade -y \
-	&& apt-get install -y ruby2.1 ruby2.1-dev ruby ruby-switch unzip \
+	&& apt-get install -y ruby2.3 ruby2.3-dev ruby ruby-switch unzip \
 	iptables lxc fontconfig libffi-dev build-essential git \
 	&& rm -rf /var/lib/apt/lists/*
 
-RUN ruby-switch --set ruby2.1
+# Install fastlane
+RUN ruby-switch --set ruby2.3
+RUN gem install fastlane -NV --no-rdoc --no-ri
 
 # Install the magic wrapper.
 ADD wrapdocker /usr/local/bin/wrapdocker
