@@ -4,6 +4,13 @@ MAINTAINER Aurelian Dumanovschi <aurasd@gmail.com>
 
 ENV AGENT_DIR  /opt/buildAgent
 ENV USER teamcity
+ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
+ENV JRE_HOME /usr/lib/jvm/java-8-oracle/jre
+ENV GRADLE_HOME /opt/gradle
+ENV ANDROID_HOME /opt/android-sdk-linux
+ENV ANDROID_NDK_HOME /opt/android-sdk-linux/ndk-bundle
+ENV NDK_HOME /opt/android-sdk-linux/ndk-bundle
+ENV ANDROID_SDK_TOOLS_REVISION 25.2.3
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
@@ -72,15 +79,43 @@ RUN apt-add-repository ppa:brightbox/ruby-ng \
 RUN ruby-switch --set ruby2.3
 RUN gem install fastlane -NV --no-rdoc --no-ri
 
+# Import the Let's Encrypt Authority certificate for Java to accept TeamCity server certificate
+RUN curl -o /root/lets-encrypt.der https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.der \
+ && $JRE_HOME/bin/keytool -trustcacerts -keystore $JRE_HOME/lib/security/cacerts -storepass changeit \
+    -noprompt -importcert -alias lets-encrypt-x3-cross-signed -file /root/lets-encrypt.der \
+ && rm /root/lets-encrypt.der
+
+RUN mkdir -p $GRADLE_HOME
+RUN mkdir -p $ANDROID_HOME
+
+# Install Android command line tools
+RUN wget -nc https://dl.google.com/android/repository/tools_r${ANDROID_SDK_TOOLS_REVISION}-linux.zip \
+    && unzip tools_r${ANDROID_SDK_TOOLS_REVISION}-linux.zip -d $ANDROID_HOME \
+    && rm tools_r${ANDROID_SDK_TOOLS_REVISION}-linux.zip \
+    && chmod +x $ANDROID_HOME/tools/android
+
+# Install Android licenses to not accept them manually during builds
+ADD licenses.tar.gz $ANDROID_HOME/
+
+# Install Android extras
+#RUN echo y | $ANDROID_HOME/temp_tools/android update sdk --no-ui --all --filter \
+#    platform-tools,tools,extra-android-support,extra-android-m2repository,extra-google-m2repository
+
+# Install ndk
+RUN $ANDROID_HOME/tools/bin/sdkmanager "cmake;3.6.3155560" \
+    && $ANDROID_HOME/tools/bin/sdkmanager "lldb;2.2" \
+    && $ANDROID_HOME/tools/bin/sdkmanager "ndk-bundle" \
+    && $ANDROID_HOME/tools/bin/sdkmanager "patcher;v4" \
+    && chown -R $USER:$USER $ANDROID_HOME
+
 # Install the magic wrapper.
 ADD wrapdocker /usr/local/bin/wrapdocker
-
 ADD docker-entrypoint.sh /docker-entrypoint.sh
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 VOLUME /var/lib/docker
 VOLUME /opt/buildAgent
-
+VOLUME /opt/android-sdk-linux
 
 EXPOSE 9090
