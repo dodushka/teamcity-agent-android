@@ -1,6 +1,9 @@
 FROM ubuntu:14.04
 
+MAINTAINER Aurelian Dumanovschi <aurasd@gmail.com>
+
 ENV AGENT_DIR  /opt/buildAgent
+ENV USER teamcity
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
@@ -38,8 +41,8 @@ RUN echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-s
 
 # Install docker
 ENV DOCKER_BUCKET get.docker.com
-ENV DOCKER_VERSION 1.11.1
-ENV DOCKER_SHA256 893e3c6e89c0cd2c5f1e51ea41bc2dd97f5e791fcfa3cee28445df277836339d
+ENV DOCKER_VERSION 1.12.6
+ENV DOCKER_SHA256 cadc6025c841e034506703a06cf54204e51d0cadfae4bae62628ac648d82efdd
 RUN set -x \
   && curl -fSL "https://${DOCKER_BUCKET}/builds/Linux/x86_64/docker-$DOCKER_VERSION.tgz" -o docker.tgz \
   && echo "${DOCKER_SHA256} *docker.tgz" | sha256sum -c - \
@@ -51,7 +54,7 @@ RUN set -x \
 
 RUN groupadd docker && adduser --disabled-password --gecos "" teamcity \
 	&& sed -i -e "s/%sudo.*$/%sudo ALL=(ALL:ALL) NOPASSWD:ALL/" /etc/sudoers \
-	&& usermod -a -G docker,sudo teamcity
+	&& usermod -a -G docker,sudo $USER
 
 # Install jq (from github, repo contains ancient version)
 RUN curl -o /usr/local/bin/jq -SL https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 \
