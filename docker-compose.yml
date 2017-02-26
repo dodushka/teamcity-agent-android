@@ -5,7 +5,7 @@ server:
   volumes:
     - ./teamcity-storage:/var/lib/teamcity
 agent:
-  image: sjoerdmulder/teamcity-agent
+  image: auras/teamcity-agent-android
   links:
     - server
   environment:
