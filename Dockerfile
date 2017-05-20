@@ -99,6 +99,7 @@ ADD licenses.tar.gz $ANDROID_HOME/
 
 # Install ndk
 RUN $ANDROID_HOME/tools/bin/sdkmanager "extras;google;m2repository" \
+    && $ANDROID_HOME/tools/bin/sdkmanager "extras;google;google_play_services" \
     && $ANDROID_HOME/tools/bin/sdkmanager "cmake;3.6.3155560" \
     && $ANDROID_HOME/tools/bin/sdkmanager "lldb;2.3" \
     && $ANDROID_HOME/tools/bin/sdkmanager "ndk-bundle" \
