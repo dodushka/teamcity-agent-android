@@ -17,4 +17,4 @@ docker run -d --name=teamcity-agent-android-1 --link teamcity:teamcity --privile
 
 ## What is inside
 
-- Android Build tools, ndk-bundle, cmake 3.6.3155560, lldb 2.2, fastlane, ruby 2.3, oracle jdk8
+- Android Build tools, ndk-bundle, cmake 3.6.3155560, lldb 2.3, fastlane, ruby 2.3, oracle jdk8, google repositories
