@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 
 MAINTAINER Aurelian Dumanovschi <aurasd@gmail.com>
 
@@ -14,7 +14,7 @@ ENV ANDROID_SDK_TOOLS_VERSION 3859397
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
-		lxc iptables aufs-tools ca-certificates curl wget software-properties-common language-pack-en \
+		lxc iptables aufs-tools ca-certificates curl wget file software-properties-common language-pack-en \
 	&& rm -rf /var/lib/apt/lists/*
 
 # Fix locale.
@@ -100,7 +100,7 @@ ADD licenses.tar.gz $ANDROID_HOME/
 # Install ndk
 RUN $ANDROID_HOME/tools/bin/sdkmanager "extras;google;m2repository" \
     && $ANDROID_HOME/tools/bin/sdkmanager "extras;google;google_play_services" \
-    && $ANDROID_HOME/tools/bin/sdkmanager "cmake;3.6.3155560" \
+    && $ANDROID_HOME/tools/bin/sdkmanager "cmake;3.6.4111459" \
     && $ANDROID_HOME/tools/bin/sdkmanager "lldb;2.3" \
     && $ANDROID_HOME/tools/bin/sdkmanager "ndk-bundle" \
     && $ANDROID_HOME/tools/bin/sdkmanager "patcher;v4" \
