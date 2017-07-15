@@ -14,7 +14,7 @@ ENV ANDROID_SDK_TOOLS_VERSION 3859397
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
-		lxc iptables aufs-tools ca-certificates curl wget file software-properties-common language-pack-en \
+		lxc iptables aufs-tools ca-certificates curl wget file software-properties-common language-pack-en sudo \
 	&& rm -rf /var/lib/apt/lists/*
 
 # Fix locale.
