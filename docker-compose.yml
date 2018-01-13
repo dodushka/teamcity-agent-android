@@ -1,5 +1,5 @@
 server:
-  image: sjoerdmulder/teamcity
+  image: auras/teamcity-docker
   ports:
     - 8111:8111
   volumes:
