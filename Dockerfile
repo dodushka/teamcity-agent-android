@@ -55,7 +55,7 @@ RUN curl -o /root/lets-encrypt.der https://letsencrypt.org/certs/lets-encrypt-x3
     -noprompt -importcert -alias lets-encrypt-x3-cross-signed -file /root/lets-encrypt.der \
     && rm /root/lets-encrypt.der
 
-RUN mkdir -p $GRADLE_HOME \
+RUN mkdir -p $GRADLE_USER_HOME \
     && mkdir -p $ANDROID_HOME
 
 # Install Android command line tools
