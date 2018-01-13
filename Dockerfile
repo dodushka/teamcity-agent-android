@@ -3,6 +3,7 @@ FROM ubuntu:16.04
 MAINTAINER Aurelian Dumanovschi <aurasd@gmail.com>
 
 ENV AGENT_DIR  /opt/workspace
+ENV USER teamcity
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV JRE_HOME /usr/lib/jvm/java-8-openjdk-amd64/jre
 ENV GRADLE_USER_HOME /opt/gradle
@@ -27,6 +28,11 @@ RUN apt-get update \
         fontconfig libffi-dev build-essential git curl ca-certificates ca-certificates-java \
     && apt-get clean \
 	&& rm -rf /var/lib/apt/lists/*
+
+# Create user
+RUN adduser --disabled-password --gecos "" $USER \
+	&& sed -i -e "s/%sudo.*$/%sudo ALL=(ALL:ALL) NOPASSWD:ALL/" /etc/sudoers \
+	&& usermod -a -G sudo $USER
 
 # Fix locale.
 ENV LANG en_US.UTF-8
