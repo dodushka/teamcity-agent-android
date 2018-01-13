@@ -56,7 +56,9 @@ RUN curl -o /root/lets-encrypt.der https://letsencrypt.org/certs/lets-encrypt-x3
     && rm /root/lets-encrypt.der
 
 RUN mkdir -p $GRADLE_USER_HOME \
-    && mkdir -p $ANDROID_HOME
+    && chmod 777 $GRADLE_HOME \
+    && mkdir -p $ANDROID_HOME \
+    && chmod 777 $ANDROID_HOME
 
 # Install Android command line tools
 RUN wget -nc https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_TOOLS_VERSION}.zip \
