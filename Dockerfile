@@ -5,7 +5,7 @@ MAINTAINER Aurelian Dumanovschi <aurasd@gmail.com>
 ENV AGENT_DIR  /opt/workspace
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV JRE_HOME /usr/lib/jvm/java-8-openjdk-amd64/jre
-ENV GRADLE_HOME /opt/gradle
+ENV GRADLE_USER_HOME /opt/gradle
 ENV ANDROID_HOME /opt/android-sdk-linux
 ENV ANDROID_NDK_HOME /opt/android-sdk-linux/ndk-bundle
 ENV NDK_HOME /opt/android-sdk-linux/ndk-bundle
@@ -82,5 +82,6 @@ ENTRYPOINT ["/docker-entrypoint.sh"]
 
 VOLUME /opt/buildAgent
 VOLUME /opt/android-sdk-linux
+VOLUME /opt/gradle
 
 EXPOSE 9090
