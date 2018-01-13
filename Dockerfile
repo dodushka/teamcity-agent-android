@@ -55,13 +55,15 @@ RUN curl -o /root/lets-encrypt.der https://letsencrypt.org/certs/lets-encrypt-x3
     -noprompt -importcert -alias lets-encrypt-x3-cross-signed -file /root/lets-encrypt.der \
     && rm /root/lets-encrypt.der
 
+# Configure gradle
 RUN mkdir -p $GRADLE_USER_HOME \
-    && chmod 777 $GRADLE_HOME \
-    && mkdir -p $ANDROID_HOME \
-    && chmod 777 $ANDROID_HOME
+    && chmod 777 $GRADLE_USER_HOME \
+ADD gradle.properties $GRADLE_USER_HOME/gradle.properties
 
 # Install Android command line tools
-RUN wget -nc https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_TOOLS_VERSION}.zip \
+RUN mkdir -p $ANDROID_HOME \
+    && chmod 777 $ANDROID_HOME \
+    && wget -nc https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_TOOLS_VERSION}.zip \
     && unzip sdk-tools-linux-${ANDROID_SDK_TOOLS_VERSION}.zip -d $ANDROID_HOME \
     && rm sdk-tools-linux-${ANDROID_SDK_TOOLS_VERSION}.zip \
     && chmod +x $ANDROID_HOME/tools/android
