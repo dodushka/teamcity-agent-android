@@ -63,7 +63,7 @@ RUN curl -o /root/lets-encrypt.der https://letsencrypt.org/certs/lets-encrypt-x3
 
 # Configure gradle
 RUN mkdir -p $GRADLE_USER_HOME \
-    && chmod 777 $GRADLE_USER_HOME \
+    && chmod 777 $GRADLE_USER_HOME
 ADD gradle.properties $GRADLE_USER_HOME/gradle.properties
 
 # Install Android command line tools
