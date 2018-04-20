@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 
 MAINTAINER Aurelian Dumanovschi <aurasd@gmail.com>
 
-ENV AGENT_DIR  /opt/workspace
+ENV AGENT_DIR  /opt/buildAgent
 ENV USER teamcity
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV JRE_HOME /usr/lib/jvm/java-8-openjdk-amd64/jre
