@@ -48,5 +48,3 @@ RUN yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses
 RUN $ANDROID_HOME/tools/bin/sdkmanager "extras;google;m2repository" \
     && $ANDROID_HOME/tools/bin/sdkmanager "extras;google;google_play_services" \
     && chown -R $USER:$USER $ANDROID_HOME
-
-EXPOSE 9090
