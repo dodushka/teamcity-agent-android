@@ -14,7 +14,7 @@ ENV PATH "$ANDROID_HOME/tools:$PATH"
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
-		aufs-tools wget file language-pack-en unzip lxc \
+		wget file language-pack-en unzip lxc \
     && apt-get clean \
 	&& rm -rf /var/lib/apt/lists/*
 
