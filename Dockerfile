@@ -15,7 +15,6 @@ ENV PATH "$ANDROID_HOME/tools:$PATH"
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
 		aufs-tools wget file language-pack-en unzip lxc \
-        curl ca-certificates ca-certificates-java \
     && apt-get clean \
 	&& rm -rf /var/lib/apt/lists/*
 
@@ -28,12 +27,6 @@ RUN adduser --disabled-password --gecos "" $USER \
 ENV LANG en_US.UTF-8
 ENV LC_CTYPE en_US.UTF-8
 RUN locale-gen en_US && update-locale LANG=en_US.UTF-8 LC_CTYPE=en_US.UTF-8
-
-# Import the Let's Encrypt Authority certificate for Java to accept TeamCity server certificate
-RUN curl -o /root/lets-encrypt.der https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.der \
-    && keytool -trustcacerts -keystore $JAVA_HOME/lib/security/cacerts -storepass changeit \
-    -noprompt -importcert -alias lets-encrypt-x3-cross-signed -file /root/lets-encrypt.der \
-    && rm /root/lets-encrypt.der
 
 # Configure gradle
 RUN mkdir -p $GRADLE_USER_HOME \
