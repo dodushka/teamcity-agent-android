@@ -14,5 +14,4 @@ RUN apt-get update \
 RUN $ANDROID_HOME/tools/bin/sdkmanager "cmake;3.6.4111459" \	
     && $ANDROID_HOME/tools/bin/sdkmanager "lldb;2.3" \	
     && $ANDROID_HOME/tools/bin/sdkmanager "ndk-bundle" \	
-    && $ANDROID_HOME/tools/bin/sdkmanager "patcher;v4" \	
     && chown -R $USER:$USER $ANDROID_HOME
