@@ -1,6 +1,6 @@
 FROM auras/teamcity-android-agent:latest
 
-MAINTAINER Aurelian Dumanovschi <aurasd@gmail.com>
+LABEL maintainer="Aurelian Dumanovschi <aurasd@gmail.com>"
 
 ENV RUBY_VERSION 2.4
 

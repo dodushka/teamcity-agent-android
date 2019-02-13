@@ -1,6 +1,6 @@
 FROM jetbrains/teamcity-minimal-agent:latest
 
-MAINTAINER Aurelian Dumanovschi <aurasd@gmail.com>
+LABEL maintainer="Aurelian Dumanovschi <aurasd@gmail.com>"
 
 ENV USER teamcity
 ENV GRADLE_USER_HOME /opt/gradle

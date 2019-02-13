@@ -1,6 +1,6 @@
 FROM auras/teamcity-android-agent:latest
 
-MAINTAINER Aurelian Dumanovschi <aurasd@gmail.com>
+LABEL maintainer="Aurelian Dumanovschi <aurasd@gmail.com>"
 
 ENV ANDROID_NDK_HOME /opt/android-sdk-linux/ndk-bundle
 ENV NDK_HOME /opt/android-sdk-linux/ndk-bundle
