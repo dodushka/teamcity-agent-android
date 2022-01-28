@@ -42,7 +42,7 @@ RUN mkdir -p $ANDROID_HOME \
     && chmod +x $ANDROID_HOME/tools
 
 # Install Android licenses to not accept them manually during builds
-RUN yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses
+RUN yes | $ANDROID_HOME/tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} --licenses
 
 # Install ndk
 RUN $ANDROID_HOME/tools/bin/sdkmanager "extras;google;m2repository" \
