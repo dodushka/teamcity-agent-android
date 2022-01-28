@@ -55,5 +55,5 @@ RUN $ANDROID_HOME/tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} "extras;google
 
 #Install firebase
 RUN sudo apt update && sudo apt upgrade \
-    yes | sudo apt install curl \
+    sudo apt install curl \
     yes | curl -sL https://firebase.tools | bash
