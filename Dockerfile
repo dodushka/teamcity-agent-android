@@ -39,13 +39,13 @@ RUN mkdir -p $ANDROID_HOME \
     && wget -nc https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS_VERSION}_latest.zip \
     && unzip commandlinetools-linux-${ANDROID_SDK_TOOLS_VERSION}_latest.zip -d $ANDROID_HOME \
     && rm commandlinetools-linux-${ANDROID_SDK_TOOLS_VERSION}_latest.zip \
-    && chmod +x $ANDROID_HOME/cmdline-tools/
+    && chmod +x $ANDROID_HOME/tools/android
 
 # Install Android licenses to not accept them manually during builds
-RUN yes | $ANDROID_HOME/cmdline-tools/bin/sdkmanager --licenses
+RUN yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses
 
 # Install ndk
-RUN $ANDROID_HOME/cmdline-tools/bin/sdkmanager "extras;google;m2repository" \
-    && $ANDROID_HOME/cmdline-tools/bin/sdkmanager "extras;google;google_play_services" \
-    && $ANDROID_HOME/cmdline-tools/bin/sdkmanager "patcher;v4" \
+RUN $ANDROID_HOME/tools/bin/sdkmanager "extras;google;m2repository" \
+    && $ANDROID_HOME/tools/bin/sdkmanager "extras;google;google_play_services" \
+    && $ANDROID_HOME/tools/bin/sdkmanager "patcher;v4" \
     && chown -R $USER:$USER $ANDROID_HOME
