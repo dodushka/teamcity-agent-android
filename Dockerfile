@@ -47,5 +47,4 @@ RUN yes | $ANDROID_HOME/tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} --licens
 # Install ndk
 RUN $ANDROID_HOME/tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} "extras;google;m2repository" \
     && $ANDROID_HOME/tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}  "extras;google;google_play_services" \
-    && $ANDROID_HOME/tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} "patcher;v4" \
-    && chown -R $USER:$USER $ANDROID_HOME
+    && $ANDROID_HOME/tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} "patcher;v4"
