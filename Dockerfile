@@ -1,5 +1,5 @@
 FROM jetbrains/teamcity-minimal-agent:latest
-
+USER root
 LABEL maintainer="Aurelian Dumanovschi <aurasd@gmail.com>"
 
 ARG JDK_URL='https://corretto.aws/downloads/resources/11.0.14.9.1/amazon-corretto-11.0.14.9.1-linux-x64.tar.gz'
