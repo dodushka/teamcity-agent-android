@@ -2,6 +2,9 @@ FROM jetbrains/teamcity-minimal-agent:latest
 
 LABEL maintainer="Aurelian Dumanovschi <aurasd@gmail.com>"
 
+ARG JDK_URL='https://corretto.aws/downloads/resources/11.0.14.9.1/amazon-corretto-11.0.14.9.1-linux-x64.tar.gz'
+ARG MD5SUM='bc1bc7203435fb7eaca360f581af73f3'
+
 ENV USER teamcity
 ENV GRADLE_USER_HOME /opt/gradle
 ENV ANDROID_HOME /opt/android-sdk-linux
