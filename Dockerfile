@@ -39,7 +39,7 @@ RUN mkdir -p $ANDROID_HOME \
     && wget -nc https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS_VERSION}_latest.zip \
     && unzip commandlinetools-linux-${ANDROID_SDK_TOOLS_VERSION}_latest.zip -d $ANDROID_HOME \
     && rm commandlinetools-linux-${ANDROID_SDK_TOOLS_VERSION}_latest.zip \
-    && chmod +x $ANDROID_HOME/tools/android
+    && chmod +x $ANDROID_HOME/tools
 
 # Install Android licenses to not accept them manually during builds
 RUN yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses
