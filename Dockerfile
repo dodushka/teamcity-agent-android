@@ -58,5 +58,5 @@ RUN $ANDROID_HOME/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} "extra
     && chown -R $USER:$USER $ANDROID_HOME
 
 RUN mkdir /opt/buildagent/repository
-    && /opt/buildagent/repository/RestoLinkx-Android
+    && mkdir /opt/buildagent/repository/RestoLinkx-Android
 
