@@ -21,13 +21,14 @@ RUN apt-get update \
     && apt-get clean \
 	&& rm -rf /var/lib/apt/lists/*
 
-#Install firebase
-RUN yes | curl -sL https://firebase.tools | bash
-
 
 # Create user
 RUN adduser --disabled-password --gecos "" $USER \
 	&& usermod -a -G sudo $USER
+
+#Install firebase
+RUN yes | curl -sL https://firebase.tools | bash
+
 
 # Fix locale.
 ENV LANG en_US.UTF-8
