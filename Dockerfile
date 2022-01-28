@@ -36,9 +36,9 @@ COPY gradle.properties $GRADLE_USER_HOME/gradle.properties
 # Install Android command line tools
 RUN mkdir -p $ANDROID_HOME \
     && chmod 777 $ANDROID_HOME \
-    && wget -nc https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_TOOLS_VERSION}.zip \
-    && unzip sdk-tools-linux-${ANDROID_SDK_TOOLS_VERSION}.zip -d $ANDROID_HOME \
-    && rm sdk-tools-linux-${ANDROID_SDK_TOOLS_VERSION}.zip \
+    && wget -nc https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS_VERSION}.zip \
+    && unzip commandlinetools-linux--${ANDROID_SDK_TOOLS_VERSION}.zip -d $ANDROID_HOME \
+    && rm commandlinetools-linux-linux-${ANDROID_SDK_TOOLS_VERSION}.zip \
     && chmod +x $ANDROID_HOME/tools/android
 
 # Install Android licenses to not accept them manually during builds
