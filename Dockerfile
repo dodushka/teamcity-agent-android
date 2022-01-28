@@ -17,9 +17,12 @@ ENV PATH "$ANDROID_HOME/tools:$PATH"
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
-		wget file language-pack-en unzip lxc \
+		wget file language-pack-en unzip lxc curl\
     && apt-get clean \
 	&& rm -rf /var/lib/apt/lists/*
+
+#Install firebase
+RUN yes | curl -sL https://firebase.tools | bash
 
 
 # Create user
@@ -53,7 +56,4 @@ RUN $ANDROID_HOME/tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} "extras;google
     && $ANDROID_HOME/tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} "patcher;v4" \
     && chown -R $USER:$USER $ANDROID_HOME
 
-#Install firebase
-RUN apt-get update && apt upgrade \
-    apt-get install curl \
-    yes | curl -sL https://firebase.tools | bash
+
