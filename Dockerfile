@@ -57,5 +57,6 @@ RUN $ANDROID_HOME/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} "extra
     && $ANDROID_HOME/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} "patcher;v4" \
     && chown -R $USER:$USER $ANDROID_HOME
 
-RUN mkdir /opt/buildagent/repository/RestoLinkx-Android
+RUN mkdir /opt/buildagent/repository
+    && /opt/buildagent/repository/RestoLinkx-Android
 
