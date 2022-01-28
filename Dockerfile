@@ -21,10 +21,7 @@ RUN apt-get update \
     && apt-get clean \
 	&& rm -rf /var/lib/apt/lists/*
 
-# Create user
-RUN adduser --disabled-password --gecos "" $USER \
-	&& sed -i -e "s/%sudo.*$/%sudo ALL=(ALL:ALL) NOPASSWD:ALL/" /etc/sudoers \
-	&& usermod -a -G sudo $USER
+
 
 # Fix locale.
 ENV LANG en_US.UTF-8
