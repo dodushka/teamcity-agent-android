@@ -36,8 +36,8 @@ COPY gradle.properties $GRADLE_USER_HOME/gradle.properties
 # Install Android command line tools
 RUN mkdir -p $ANDROID_HOME \
     && chmod 777 $ANDROID_HOME \
-    && wget -nc https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS_VERSION}.zip \
-    && unzip commandlinetools-linux--${ANDROID_SDK_TOOLS_VERSION}.zip -d $ANDROID_HOME \
+    && wget -nc https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS_VERSION}_latest.zip \
+    && unzip commandlinetools-linux--${ANDROID_SDK_TOOLS_VERSION}_latest.zip -d $ANDROID_HOME \
     && rm commandlinetools-linux-linux-${ANDROID_SDK_TOOLS_VERSION}.zip \
     && chmod +x $ANDROID_HOME/tools/android
 
