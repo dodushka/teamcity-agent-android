@@ -8,7 +8,7 @@ ARG MD5SUM='bc1bc7203435fb7eaca360f581af73f3'
 ENV USER teamcity
 ENV GRADLE_USER_HOME /opt/gradle
 ENV ANDROID_HOME /opt/android-sdk-linux
-ENV ANDROID_SDK_TOOLS_VERSION 6200805
+ENV ANDROID_SDK_TOOLS_VERSION 8092744
 ENV SHELL /bin/bash
 ENV PATH "$ANDROID_HOME/emulator:$PATH"
 ENV PATH "$ANDROID_HOME/platform-tools:$PATH"
@@ -17,7 +17,7 @@ ENV PATH "$ANDROID_HOME/tools:$PATH"
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
-		wget file language-pack-en unzip lxc curl sudo\
+		wget file language-pack-en unzip lxc curl sudo git\
     && apt-get clean \
 	&& rm -rf /var/lib/apt/lists/*
 
