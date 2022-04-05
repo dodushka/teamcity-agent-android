@@ -78,7 +78,7 @@ RUN apt-get update \
 
 # Install fastlane
 RUN ruby-switch --set ruby$RUBY_VERSION
-RUN gem install fastlane -NV --no-rdoc --no-ri
+RUN gem install fastlane -NV
 
 
 # Prepare for the emulator
