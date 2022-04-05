@@ -60,6 +60,7 @@ RUN $ANDROID_HOME/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} "extra
 RUN mkdir /opt/buildagent/repository \
     && mkdir /opt/buildagent/repository/RestoLinkx-Android
 
+USER root
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
 		libpulse0 libx11-6 libgl1-mesa-glx mesa-utils pciutils \
