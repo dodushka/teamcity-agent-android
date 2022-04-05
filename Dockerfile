@@ -18,7 +18,6 @@ RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
 		wget file language-pack-en unzip lxc curl sudo git\
     && apt-get clean \
-	&& rm -rf /var/lib/apt/lists/*
 
 
 # Create user
