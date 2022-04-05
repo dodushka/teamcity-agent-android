@@ -65,7 +65,7 @@ RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
 		libpulse0 libx11-6 libgl1-mesa-glx mesa-utils pciutils \
     && apt-get clean \
-	&& rm -rf /var/lib/apt/lists/*
+	&& rm -rf /var/lib/apt/*
 
 ENV RUBY_VERSION 2.7
 
