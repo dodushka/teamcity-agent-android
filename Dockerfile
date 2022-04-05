@@ -60,3 +60,38 @@ RUN $ANDROID_HOME/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} "extra
 RUN mkdir /opt/buildagent/repository \
     && mkdir /opt/buildagent/repository/RestoLinkx-Android
 
+RUN apt-get update \
+	&& apt-get install -y --no-install-recommends \
+		libpulse0 libx11-6 libgl1-mesa-glx mesa-utils pciutils \
+    && apt-get clean \
+	&& rm -rf /var/lib/apt/lists/*
+
+ENV RUBY_VERSION 2.4
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends software-properties-common \
+    && apt-add-repository ppa:brightbox/ruby-ng \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends ruby$RUBY_VERSION ruby$RUBY_VERSION-dev ruby ruby-switch build-essential \
+    && apt-get clean \
+	&& rm -rf /var/lib/apt/lists/*
+
+# Install fastlane
+RUN ruby-switch --set ruby$RUBY_VERSION
+RUN gem install fastlane -NV --no-rdoc --no-ri
+
+
+# Prepare for the emulator
+RUN mkdir $ANDROID_HOME/system-images \
+    && mkdir /home/$USER/.android \
+    && mkdir /home/$USER/.android/avd \
+    && ln -s $ANDROID_HOME/system-images /home/$USER/.android/avd/system-images \
+    && chown -R $USER:$USER $ANDROID_HOME \
+    && chown -R $USER:$USER /home/$USER/.android
+
+# Install the emulator updater.
+COPY update-emulator.sh /update-emulator.sh
+RUN chmod +x /update-emulator.sh
+
+ENTRYPOINT ["/update-emulator.sh"]
+
