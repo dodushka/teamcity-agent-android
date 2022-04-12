@@ -93,3 +93,5 @@ RUN mkdir $ANDROID_HOME/system-images \
 COPY update-emulator.sh /update-emulator.sh
 RUN chmod +x /update-emulator.sh
 
+CMD ["/update-emulator.sh"]
+
