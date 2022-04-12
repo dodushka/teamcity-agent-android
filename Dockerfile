@@ -89,5 +89,7 @@ RUN mkdir $ANDROID_HOME/system-images \
     && chown -R $USER:$USER $ANDROID_HOME \
     && chown -R $USER:$USER /home/$USER/.android
 
-
+# Install the emulator updater.
+COPY update-emulator.sh /update-emulator.sh
+RUN chmod +x /update-emulator.sh
 
