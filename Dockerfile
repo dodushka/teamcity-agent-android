@@ -53,7 +53,6 @@ RUN yes | $ANDROID_HOME/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} 
 # Install ndk
 RUN $ANDROID_HOME/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} "extras;google;m2repository" \
     && $ANDROID_HOME/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME}  "extras;google;google_play_services" \
-    && $ANDROID_HOME/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} "patcher;v4" \
     && chown -R $USER:$USER $ANDROID_HOME
 
 RUN mkdir /opt/buildagent/repository \
